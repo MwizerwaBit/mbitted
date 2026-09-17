@@ -20,6 +20,11 @@ class Settings(BaseSettings):
     app_name: str = "Portfolio + Blog"
     api_v1_prefix: str = "/api/v1"
 
+    # SQLite by default so the app runs with zero external services; set
+    # DATABASE_URL to a Postgres DSN (e.g. postgresql+psycopg://...) to match
+    # the production MwizerwaBit stack.
+    database_url: str = "sqlite:///./portfolio.db"
+
     # Comma-separated list of origins allowed by CORS (local dev web server).
     cors_origins: str = "http://localhost:5173"
 
