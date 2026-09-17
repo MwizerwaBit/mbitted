@@ -4,6 +4,7 @@ import Layout from './components/Layout.jsx'
 import Skeleton from './components/Skeleton.jsx'
 import Home from './pages/Home.jsx'
 import Blog from './pages/Blog.jsx'
+import NotFound from './pages/NotFound.jsx'
 
 // Code-split the heavier routes so the initial bundle stays small (faster
 // first paint). BlogPost pulls in the `marked` parser; Dashboard pulls in the
@@ -43,6 +44,7 @@ export default function App() {
             </Suspense>
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   )

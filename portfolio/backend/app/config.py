@@ -28,6 +28,9 @@ class Settings(BaseSettings):
     # Comma-separated list of origins allowed by CORS (local dev web server).
     cors_origins: str = "http://localhost:5173"
 
+    # Public base URL used to build absolute links in the RSS feed and sitemap.
+    app_url: str = "http://localhost:5173"
+
 
 @lru_cache
 def get_settings() -> Settings:

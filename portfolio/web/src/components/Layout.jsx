@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle.jsx'
+import ScrollProgress from './ScrollProgress.jsx'
 
 const LINKS = [
   { to: '/', label: 'Portfolio', end: true },
@@ -45,6 +46,8 @@ export default function Layout() {
       <a className="skip-link" href="#main">
         Skip to content
       </a>
+
+      <ScrollProgress />
 
       <header className="app-header">
         <div className="container header-inner">
@@ -128,6 +131,35 @@ export default function Layout() {
       <main id="main" className="route" key={location.pathname}>
         <Outlet />
       </main>
+
+      <footer className="footer">
+        <div className="container footer-inner">
+          <div className="footer-brand">
+            <Link to="/" className="brand" aria-label="MwizerwaBit home">
+              <span className="brand-mark" aria-hidden="true">
+                M
+              </span>
+              <span>MwizerwaBit</span>
+            </Link>
+            <p className="footer-tagline">
+              SaaS products, built end-to-end with FastAPI, Postgres, React, and Flutter.
+            </p>
+          </div>
+          <nav className="footer-nav" aria-label="Footer">
+            {LINKS.map((l) => (
+              <NavLink key={l.to} to={l.to} end={l.end} className={navClass}>
+                {l.label}
+              </NavLink>
+            ))}
+            <a className="nav-link" href="/feed.xml">
+              RSS
+            </a>
+          </nav>
+          <p className="footer-copy">
+            © {new Date().getFullYear()} MwizerwaBit. All rights reserved.
+          </p>
+        </div>
+      </footer>
     </>
   )
 }

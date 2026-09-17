@@ -24,6 +24,7 @@ export default function BlogPost() {
   useSeo({
     title: post?.title,
     description: post?.summary || undefined,
+    type: 'article',
   })
 
   useEffect(() => {
@@ -32,6 +33,26 @@ export default function BlogPost() {
       .then(setPost)
       .catch((err) => setError(err.message))
   }, [slug])
+
+  // Inject BlogPosting structured data (JSON-LD) so search engines and social
+  // previews can read the post metadata directly from the page.
+  useEffect(() => {
+    if (!post) return
+    const script = document.createElement('script')
+    script.type = 'application/ld+json'
+    script.text = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: post.title,
+      description: post.summary,
+      datePublished: post.published_at || undefined,
+      author: { '@type': 'Person', name: 'MwizerwaBit' },
+    })
+    document.head.appendChild(script)
+    return () => {
+      document.head.removeChild(script)
+    }
+  }, [post])
 
   const toggleBookmark = () => {
     setBookmarked((prev) => {

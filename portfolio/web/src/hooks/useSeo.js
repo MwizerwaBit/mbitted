@@ -17,10 +17,11 @@ function setMeta(attr, key, content) {
 }
 
 /**
- * Set the document title and meta description/OG tags for the current page.
- * Keeps the tab title and social previews correct without a router plugin.
+ * Set the document title and meta description/OG/twitter tags for the current
+ * page. Keeps the tab title and social previews correct without a router plugin.
+ * Pass `type: 'article'` and an `image` URL to emit richer cards for blog posts.
  */
-export default function useSeo({ title, description }) {
+export default function useSeo({ title, description, type = 'website', image }) {
   useEffect(() => {
     const full = title ? `${title} — ${SITE}` : `${SITE} — Full-stack SaaS engineer`
     document.title = full
@@ -28,5 +29,11 @@ export default function useSeo({ title, description }) {
     setMeta('property', 'og:title', full)
     setMeta('property', 'og:description', description)
     setMeta('property', 'og:url', window.location.href)
-  }, [title, description])
+    setMeta('property', 'og:type', type)
+    setMeta('property', 'og:image', image)
+    setMeta('name', 'twitter:card', image ? 'summary_large_image' : 'summary')
+    setMeta('name', 'twitter:title', full)
+    setMeta('name', 'twitter:description', description)
+    setMeta('name', 'twitter:image', image)
+  }, [title, description, type, image])
 }
