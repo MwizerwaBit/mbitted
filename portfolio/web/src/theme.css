@@ -1,0 +1,118 @@
+/* Apple HIG design tokens — spacing, typography, and system colors. */
+
+:root {
+  /* Typography (SF Pro system stack) */
+  --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Spacing scale (4pt base, per HIG) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+
+  /* Corner radius */
+  --radius: 10px;
+
+  /* Light system colors */
+  --color-bg: #f2f2f7;
+  --color-card: #ffffff;
+  --color-label: #1c1c1e;
+  --color-secondary: #3c3c43;
+  --color-tertiary: #8e8e93;
+  --color-accent: #007aff;
+  --color-separator: rgba(60, 60, 67, 0.29);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #000000;
+    --color-card: #1c1c1e;
+    --color-label: #ffffff;
+    --color-secondary: #ebebf5;
+    --color-tertiary: #98989f;
+    --color-accent: #0a84ff;
+    --color-separator: rgba(84, 84, 88, 0.6);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-system);
+  font-size: 17px; /* iOS body */
+  line-height: 1.47;
+  color: var(--color-label);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-3);
+}
+
+.hero {
+  padding: var(--space-5) 0;
+}
+
+.large-title {
+  font-size: 34px; /* iOS large title */
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--space-2);
+}
+
+.subhead {
+  font-size: 17px;
+  color: var(--color-secondary);
+  margin: 0;
+}
+
+.content {
+  margin-top: var(--space-4);
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.card {
+  background: var(--color-card);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  border: 0.5px solid var(--color-separator);
+}
+
+.title {
+  font-size: 22px; /* iOS title 2 */
+  font-weight: 600;
+  margin: 0 0 var(--space-1);
+}
+
+.summary {
+  font-size: 17px;
+  color: var(--color-secondary);
+  margin: 0 0 var(--space-2);
+}
+
+.footnote {
+  font-size: 13px; /* iOS footnote */
+  color: var(--color-tertiary);
+}
+
+code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 15px;
+  background: var(--color-card);
+  padding: 2px 6px;
+  border-radius: 6px;
+}
