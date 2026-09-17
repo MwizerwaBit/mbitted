@@ -1,0 +1,11 @@
+{
+  "name": "widget",
+  "fields": [
+    {"name": "name", "type": "str", "required": true, "max_length": 255, "unique": true},
+    {"name": "description", "type": "text"},
+    {"name": "price", "type": "float", "required": true},
+    {"name": "stock", "type": "int"},
+    {"name": "active", "type": "bool", "required": true},
+    {"name": "owner_id", "type": "uuid", "required": true, "fk": "users.id", "index": true}
+  ]
+}
