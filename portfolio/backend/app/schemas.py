@@ -15,6 +15,7 @@ class PostBase(BaseModel):
     title: str
     summary: str = ""
     body: str = ""
+    tags: str = ""
 
 
 class PostCreate(PostBase):
@@ -26,6 +27,7 @@ class PostUpdate(BaseModel):
     title: str | None = None
     summary: str | None = None
     body: str | None = None
+    tags: str | None = None
     published: bool | None = None
 
 
@@ -37,6 +39,7 @@ class PostRead(BaseModel):
     title: str
     summary: str
     body: str
+    tags: str
     published: bool
     published_at: datetime | None
     created_at: datetime

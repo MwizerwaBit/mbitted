@@ -11,7 +11,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app import seed
 from app.config import settings
 from app.database import Base, SessionLocal, engine
-from app.routes import dashboard, posts, projects
+from app.routes import dashboard, feed, posts, projects, sitemap
 
 
 @asynccontextmanager
@@ -41,6 +41,10 @@ app.include_router(
 app.include_router(
     dashboard.router, prefix=f"{settings.api_v1_prefix}/dashboard", tags=["dashboard"]
 )
+
+# SEO / syndication endpoints live at the app root (not under /api/v1).
+app.include_router(feed.router, tags=["feed"])
+app.include_router(sitemap.router, tags=["sitemap"])
 
 
 @app.get("/health", tags=["health"])

@@ -3,8 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#f2f2f7" />
-    <title>Portfolio + Blog</title>
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+
+    <title>MwizerwaBit — Full-stack SaaS engineer</title>
+    <meta
+      name="description"
+      content="Portfolio and blog of MwizerwaBit — building SaaS products end-to-end with FastAPI, Postgres, React, and Flutter, following Apple's Human Interface Guidelines."
+    />
+    <meta name="author" content="MwizerwaBit" />
+    <link rel="preconnect" href="http://localhost:8000" />
+    <link rel="dns-prefetch" href="http://localhost:8000" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="MwizerwaBit" />
+    <meta property="og:title" content="MwizerwaBit — Full-stack SaaS engineer" />
+    <meta
+      property="og:description"
+      content="Portfolio and blog: FastAPI + Postgres backends, React web apps, and Flutter mobile apps — built to Apple's Human Interface Guidelines."
+    />
+
+    <script>
+      // Apply the saved (or system) theme before first paint to avoid a flash.
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme')
+          var theme =
+            stored === 'light' || stored === 'dark'
+              ? stored
+              : window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light'
+          document.documentElement.dataset.theme = theme
+        } catch (e) {
+          document.documentElement.dataset.theme = 'light'
+        }
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>
